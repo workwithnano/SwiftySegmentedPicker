@@ -21,10 +21,12 @@ public struct SegmentedPicker<Element, Content, Selection>: View
     private let selection: () -> Selection
     private let content: (Data.Element, Bool) -> Content
     private let selectionAlignment: VerticalAlignment
+    private let spacing: CGFloat
 
     public init(_ data: Data,
                 selectedIndex: Binding<Data.Index?>,
                 selectionAlignment: VerticalAlignment = .center,
+                spacing: CGFloat = 0,
                 @ViewBuilder content: @escaping (Data.Element, Bool) -> Content,
                 @ViewBuilder selection: @escaping () -> Selection) {
 
@@ -50,7 +52,7 @@ public struct SegmentedPicker<Element, Content, Selection>: View
                     }
             }
 
-            HStack(spacing: 0) {
+            HStack(spacing: spacing) {
                 ForEach(data.indices, id: \.self) { index in
                     Button(action: { selectedIndex = index },
                            label: { content(data[index], selectedIndex == index) }
