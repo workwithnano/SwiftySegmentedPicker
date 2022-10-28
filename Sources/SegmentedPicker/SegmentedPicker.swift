@@ -33,6 +33,7 @@ public struct SegmentedPicker<Element, Content, Selection>: View
         self.data = data
         self.content = content
         self.selection = selection
+        self.spacing = spacing
         self._selectedIndex = selectedIndex
         self._frames = State(wrappedValue: Array(repeating: .zero,
                                                  count: data.count))
